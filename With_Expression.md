@@ -1,5 +1,6 @@
 # With Expression
-The **with **expression:  
+The **with** expression:
+
 Defines a local scope for variables if you need a couple of temporary variables to calculate something
 ```
 content = "Now is the time"
@@ -15,8 +16,10 @@ lp = with {:ok, file}   = File.open("/etc/passwd"),
 IO.puts lp             #=> Group: 26, User: 26
 IO.puts content        #=> Now is the time
 ```
-  
-Gives some control over pattern matching when using the **<-** operator.
+
+[with_expression_scope.exs](./with_expression_scope.exs)
+
+Gives some control over pattern matching when using the **<-** operator
         ```
         result  =  with {:ok, file}   =  File.open("/etc/passwd"),
                         content       =  IO.read(file, :all),
