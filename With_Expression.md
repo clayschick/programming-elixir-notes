@@ -1,11 +1,30 @@
-# With Expression
 The **with** expression:
 
-Defines a local scope for variables if you need a couple of temporary variables to calculate something:
+- Defines a local scope for variables if you need a couple of temporary variables to calculate something:
 
-[with expression scope](./with_expression_scope.exs)
+```elixir
+content = "Now is the time"
 
-Gives some control over pattern matching when using the **<-** operator:
+lp  =  with {:ok, file}   = File.open("/etc/passwd"),
+            content       = IO.read(file, :all),
+            :ok           = File.close(file),
+            [_, uid, gid] = Regex.run(~r/_lp:.*?:(\d+):(\d+)/, content)
+       do
+            "Group: #{gid}, User: #{uid}"
+       end
+
+IO.puts lp             #=> Group: 26, User: 26
+IO.puts content        #=> Now is the time
+```
+
+- Gives some control over pattern matching when using the **<-** operator:
+
+```
+iex(1)> with [a|_] <- [1,2,3], do: a
+1
+iex(2)> with [a|_] <- nil, do: a
+nil
+```
 
 ```elixir
 result  =  with {:ok, file}   =  File.open("/etc/passwd"),
@@ -19,6 +38,6 @@ result  =  with {:ok, file}   =  File.open("/etc/passwd"),
 IO.puts inspect(result)       #=> nil
 ```
 
-[with expression pattern matching](./with_expression_pattern_match.exs)
+If a match fails it will return the value that could not be matched.
 
-NOTE: if a match fails it will return the value that could not be matched
+The first parameter has to be on the same line as the **with** because Elixir treats it like a call to a function or a macro.
