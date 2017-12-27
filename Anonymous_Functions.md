@@ -98,3 +98,8 @@ iex(7)> len.([1,2,3,4,5])
 ```
 
 The **&** notation makes it easy to pass a function to another function
+
+```
+iex(1)> Enum.map [1,2,3,4], &(&1 + 1)
+[2, 3, 4, 5]
+```
