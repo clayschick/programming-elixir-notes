@@ -16,5 +16,14 @@ end
 
 defmodule Maths do
   def gcd(x, 0), do: x
-  def gcd(x, y), do: gcd(y, rem(x,y)) 
+  def gcd(x, y), do: gcd(y, rem(x, y))
+end
+
+# Factorial using a guard to prevent using a negative number
+defmodule FactorialGaurd do
+  def of(0), do: 1
+
+  def of(n) when n > 0 do
+    n * of(n - 1)
+  end
 end
