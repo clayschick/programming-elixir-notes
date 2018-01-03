@@ -71,3 +71,13 @@ defmodule MyCaesar do
     [head + n - 26 | caesar(tail, n)]
   end
 end
+
+defmodule MySpan do
+  def span(from, to), do: _span(from, to, [])
+
+  defp _span(to, to, list), do: [to | list]
+
+  defp _span(from, to, _) when from > to, do: []
+
+  defp _span(from, to, list) when from < to, do: _span(from, to - 1, [to | list])
+end
