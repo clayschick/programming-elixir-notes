@@ -81,3 +81,11 @@ defmodule MySpan do
 
   defp _span(from, to, list) when from < to, do: _span(from, to - 1, [to | list])
 end
+
+
+defmodule BookSolution do
+  def span(from, to) when from > to, do: []
+  def span(from, to) do
+    [from | span(from + 1, to)]
+  end
+end
